@@ -87,9 +87,9 @@ p {
 
 .buttons {
   display: flex;
-  position: fixed;
-  top: 30px;
-  left: 30px;
+  position: absolute;
+  top: 5px;
+  left: -330px;
   flex-direction: column;
 }
 
@@ -107,13 +107,13 @@ p {
 .remove-button {
   background-color: transparent;
   padding: 5px 5px 0px 5px;
-  font-size: 34px;
+  font-size: 24px;
   border-radius: 10px;
   border: 2px solid #ccc;
   cursor: pointer;
   position: absolute;
-  bottom: 0;
-  left: 52%;
+  bottom: 10px;
+  left: 60%;
   margin-bottom: 10px;
   transition: background-color 0.9s ease;
 }
@@ -126,13 +126,13 @@ p {
 .choice-button {
   background-color: transparent;
   padding: 5px 5px 0px 5px;
-  font-size: 34px;
+  font-size: 24px;
   border-radius: 10px;
   border: 2px solid #ccc;
   cursor: pointer;
   position: absolute;
-  bottom: 0;
-  left: 34%;
+  bottom: 10px;
+  left: 28%;
   margin-bottom: 10px;
   transition: background-color 0.9s ease;
 }
@@ -246,22 +246,32 @@ p {
 
 .rectangle-style5 {
   border: 2px solid red;
-  width: 308px;
-  height: 408px;
+  width: 276px;
+  height: 276px;
   position: relative;
-  border-radius: 15px;
+  border-radius: 50%;
   overflow: hidden;
-  margin: 55px 4px 5px 55px;
+  margin: 70px 4px 5px 65px;
 }
 
 .rectangle-style6 {
   border: 2px solid red;
-  width: 408px;
-  height: 542px;
+  width: 215px;
+  height: 303px;
   position: relative;
   border-radius: 15px;
   overflow: hidden;
-  margin: 1px 1px 1px 165px;
+  margin: 50px 0px 0px 30px;
+}
+
+.rectangle-style7 {
+  border: 2px solid red;
+  width: 239px;
+  height: 239px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 30px 4px 5px 13px;
 }
 
 .rectangle-pasha {
@@ -274,6 +284,18 @@ p {
   position: relative;
   overflow: hidden;
   margin: 2px 2px 4px 10px;
+}
+
+.rectangle-pasha2 {
+  display: inline-block;
+  width: 155px;
+  height: 204px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border: 2px solid red;
+
+  position: relative;
+  overflow: hidden;
+  margin: 8px 12px 4px 20px;
 }
 
 .all-remove {

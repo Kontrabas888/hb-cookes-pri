@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import useImageLogic from './useImageLogic';
 import { FcAddImage, FcRemoveImage } from "react-icons/fc";
+import { ImCopy } from "react-icons/im";
 import './App.css';
-
-
 
 const App = () => {
   const {
@@ -154,19 +153,21 @@ const App = () => {
         ))}
       </div>
       <div className='buttons printable'>
-        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style1', 2)}>Большие Круглые</button>
-        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style2', 6)}>Маленькие Круглые</button>
-        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style3', 4)}>Рамка Большие</button>
-        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style4', 4)}>Прямоугольник</button>
-        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style5', 4)}>Рамка Маленькие</button>
-        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style6', 2)}>BadaBig=14,2x10.7</button>
+        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style1', 2)}>Большие Круглые_x11</button>
+        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style2', 6)}>Маленькие Круглые_x9</button>
+        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style3', 4)}>Рамка Большие_14x10</button>
+        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style4', 4)}>Прямоугольник_13x9</button>
+        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style5', 6)}>Круглые х7</button>
+        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style6', 9)}>Logo_5.7x8</button>
+        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-style7', 12)}>Круглые х6</button>
         <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-pasha', 4)}>Пасха</button>
+        <button className='button-change' onClick={() => handleSetStyleAndNumber('rectangle-pasha2', 20)}>Пасха-маленька 5,4x4,1</button>
         
         <button className='toggle-borders-button printable' onClick={handleToggleBorders}>
           {images[activeIndex]?.showBorders ? 'Отключить границы?' : 'Границы отключены'}
         </button>
 
-                <button className='button-change' onClick={handleDuplicateImage}>Размножить</button>
+                <button className='button-change' onClick={handleDuplicateImage}>Размножить <ImCopy /></button>
         
         {images.map((_, index) => (
           <div key={index}>
