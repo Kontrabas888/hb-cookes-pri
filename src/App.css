@@ -59,6 +59,7 @@ p {
   line-height: 1.5;
 }
 
+/* Страница A4 */
 .page {
   position: relative;
   margin-left: 380px;
@@ -67,6 +68,7 @@ p {
   height: 297mm;
   border: 2px solid black;
   border-radius: 10px;
+  background: #ffffff;
 }
 
 .container {
@@ -77,14 +79,28 @@ p {
   margin-left: 2px;
 }
 
+/* Базовый прямоугольник для любого шаблона */
 .rectangle {
+  position: relative;
+  overflow: hidden; /* жёстко обрезаем всё, что выходит за рамку */
+  background: #ffffff;
   transition: width 0.3s, height 0.3s;
 }
 
-.resize-button {
-  display: none;
+/* Слой с фоном (картинка) */
+.image-layer {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
 }
 
+/* Флип по горизонтали */
+.image-flipped {
+  transform: scaleX(-1);
+  transform-origin: center center;
+}
+
+/* Кнопки под листом */
 .buttons {
   display: flex;
   position: absolute;
@@ -93,6 +109,7 @@ p {
   flex-direction: column;
 }
 
+/* Инпут выбора файла */
 .input-img-button {
   margin-top: 10px;
   padding: 2px;
@@ -104,18 +121,19 @@ p {
   color: #000000;
 }
 
+/* Кнопка удаления */
 .remove-button {
   background-color: transparent;
   padding: 5px 5px 0px 5px;
-  font-size: 24px;
+  font-size: 14px;
   border-radius: 10px;
   border: 2px solid #ccc;
   cursor: pointer;
   position: absolute;
   bottom: 10px;
-  left: 60%;
+  left: 59%;
   margin-bottom: 10px;
-  transition: background-color 0.9s ease;
+  transition: background-color 0.3s ease;
 }
 
 .remove-button:hover,
@@ -123,18 +141,19 @@ p {
   background-color: red;
 }
 
+/* Кнопка выбора (активации слота) */
 .choice-button {
   background-color: transparent;
   padding: 5px 5px 0px 5px;
-  font-size: 24px;
+  font-size: 14px;
   border-radius: 10px;
   border: 2px solid #ccc;
   cursor: pointer;
   position: absolute;
   bottom: 10px;
-  left: 28%;
+  left: 33%;
   margin-bottom: 10px;
-  transition: background-color 0.9s ease;
+  transition: background-color 0.3s ease;
 }
 
 .choice-button:hover,
@@ -142,6 +161,27 @@ p {
   background-color: rgb(0, 255, 55);
 }
 
+/* Кнопка флипа */
+.flip-button {
+  background-color: transparent;
+  padding: 5px 5px 0px 5px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  left: 46%;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.flip-button:hover,
+.flip-button:focus {
+  background-color: #ffe680;
+}
+
+/* Кнопка переключения границ */
 .toggle-borders-button {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -152,39 +192,21 @@ p {
   border-radius: 10px;
   background-color: #f0f0f0;
   color: red;
-  transition: background-color 0.7s ease;
+  transition: background-color 0.3s ease;
 }
 
 .toggle-borders-button:hover,
 .toggle-borders-button:focus {
   background-color: rgb(16, 74, 183);
+  color: #ffffff;
 }
 
+/* Отключение границ */
 .hide-borders {
   border: none !important;
 }
 
-.hide-borders .rectangle {
-  border: none !important;
-}
-
-@media print {
-  body * {
-    display: block;
-  }
-
-  .printable {
-    display: none !important;
-  }
-  .page {
-    border: none;
-    width: 210mm;
-    height: 297mm;
-    margin: 0;
-    page-break-after: always;
-  }
-}
-
+/* Кнопки выбора шаблона */
 .button-change {
   padding: 5px;
   font-size: 14px;
@@ -193,7 +215,7 @@ p {
   border-radius: 10px;
   background-color: #f0f0f0;
   color: rgb(38, 0, 255);
-  transition: background-color 0.9s ease;
+  transition: background-color 0.3s ease;
   margin-bottom: 5px;
   margin-top: 5px;
 }
@@ -201,103 +223,9 @@ p {
 .button-change:hover,
 .button-change:focus {
   background-color: rgb(0, 255, 55);
-  cursor: pointer;
 }
 
-.rectangle-style1 {
-  border: 2px solid red;
-  width: 418px;
-  height: 418px;
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 70px 20px 10px 160px;
-}
-
-.rectangle-style2 {
-  border: 2px solid red;
-  width: 352px;
-  height: 352px;
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 2px 1px 4px 25px;
-}
-
-.rectangle-style3 {
-  border: 2px solid red;
-  width: 369px;
-  height: 527px;
-  position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-  margin: 4px 1px 12px 13px;
-}
-
-.rectangle-style4 {
-  border: 2px solid red;
-  width: 342px;
-  height: 495px;
-  position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-  margin: 25px 5px 10px 30px;
-}
-
-.rectangle-style5 {
-  border: 2px solid red;
-  width: 276px;
-  height: 276px;
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 70px 4px 5px 65px;
-}
-
-.rectangle-style6 {
-  border: 2px solid red;
-  width: 215px;
-  height: 303px;
-  position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-  margin: 50px 0px 0px 30px;
-}
-
-.rectangle-style7 {
-  border: 2px solid red;
-  width: 239px;
-  height: 239px;
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 30px 4px 5px 13px;
-}
-
-.rectangle-pasha {
-  display: inline-block;
-  width: 374px;
-  height: 536px;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  border: 2px solid red;
-
-  position: relative;
-  overflow: hidden;
-  margin: 2px 2px 4px 10px;
-}
-
-.rectangle-pasha2 {
-  display: inline-block;
-  width: 155px;
-  height: 204px;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  border: 2px solid red;
-
-  position: relative;
-  overflow: hidden;
-  margin: 8px 12px 4px 20px;
-}
-
+/* Кнопка очистки всего приложения */
 .all-remove {
   margin-top: 30px;
   padding: 5px;
@@ -307,10 +235,153 @@ p {
   border-radius: 10px;
   background-color: #f0f0f0;
   color: rgb(255, 0, 0);
-  transition: background-color 0.9s ease;
+  transition: background-color 0.3s ease;
 }
 
 .all-remove:hover,
 .all-remove:focus {
   background-color: rgb(238, 170, 170);
+}
+
+/* Формы для разных шаблонов (твоя геометрия) */
+
+.rectangle-style1 {
+  border: 2px solid red;
+  width: 418px;
+  height: 418px;
+  border-radius: 50%;
+  margin: 70px 20px 10px 160px;
+}
+
+.rectangle-style2 {
+  border: 2px solid red;
+  width: 352px;
+  height: 352px;
+  border-radius: 50%;
+  margin: 2px 1px 4px 25px;
+}
+
+.rectangle-style3 {
+  border: 2px solid red;
+  width: 369px;
+  height: 527px;
+  border-radius: 15px;
+  margin: 4px 1px 12px 13px;
+}
+
+.rectangle-style4 {
+  border: 2px solid red;
+  width: 342px;
+  height: 495px;
+  border-radius: 15px;
+  margin: 25px 5px 10px 30px;
+}
+
+.rectangle-style5 {
+  border: 2px solid red;
+  width: 276px;
+  height: 276px;
+  border-radius: 50%;
+  margin: 70px 4px 5px 65px;
+}
+
+.rectangle-style6 {
+  border: 2px solid red;
+  width: 215px;
+  height: 303px;
+  border-radius: 15px;
+  margin: 50px 0px 0px 30px;
+}
+
+.rectangle-style7 {
+  border: 2px solid red;
+  width: 239px;
+  height: 239px;
+  border-radius: 50%;
+  margin: 30px 4px 5px 13px;
+}
+
+.rectangle-style8 {
+  border: 2px solid red;
+  width: 548px;
+  height: 851px;
+  border-radius: 15px;
+  margin: 40px auto;
+}
+
+.rectangle-pasha {
+  display: inline-block;
+  width: 374px;
+  height: 536px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border: 2px solid red;
+  margin: 2px 2px 4px 10px;
+}
+
+.rectangle-pasha2 {
+  display: inline-block;
+  width: 155px;
+  height: 204px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border: 2px solid red;
+  margin: 8px 12px 4px 20px;
+}
+
+/* Верхнее меню вкладок (как было) */
+
+.top-menu {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  justify-content: center;
+  background: #494846;
+  box-shadow: 0 0 10px #39f, 0 0 20px #39f, 0 0 30px #39f;
+}
+
+.tab-link {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tab-link-active {
+  background: #ffb347;
+  border-color: #ffb347;
+  color: #222;
+}
+
+/* Печать */
+
+@media print {
+  /* Скрываем элементы управления */
+  .printable,
+  .top-menu {
+    display: none !important;
+  }
+
+  .page {
+    border: none;
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    page-break-after: always;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0;
+  }
+
+  @page {
+    margin: 0;
+    size: A4;
+  }
 }

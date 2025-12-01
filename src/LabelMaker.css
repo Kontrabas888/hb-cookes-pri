@@ -1,0 +1,419 @@
+/* ===== Общий фон страницы ===== */
+
+.label-page {
+  min-height: 100vh;
+  background: #f3f3f3;
+  color: #111;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* Верх: заголовок + кнопки */
+
+.label-header {
+  font-family: "Inter", sans-serif;
+  max-width: 1200px;
+  margin: 12px auto;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.label-title {
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+
+.label-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.label-header-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Кнопки */
+
+.btn {
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: #06f822;
+  color: #000000;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  background: #cf05be;
+  color: #ffffff;
+}
+
+.btn-danger {
+  background: #fff0f0;
+  color: #cc0000;
+  border-color: #ffb3b3;
+}
+
+.btn-danger:hover {
+  background: #ffe0e0;
+}
+
+.btn-small {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* Макет: слева панель, справа предпросмотр */
+
+.label-layout {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  padding: 0 16px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .label-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Панель с настройками */
+
+.label-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Поля */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field-label {
+  font-size: 12px;
+  color: #555;
+}
+
+.field-input {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  font-size: 13px;
+  outline: none;
+}
+
+.field-input:focus {
+  border-color: #111;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.field-readonly {
+  border-radius: 8px;
+  border: 1px dashed #ccc;
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #fafafa;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.adjust-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.hint {
+  font-size: 11px;
+  color: #777;
+}
+
+/* Предпросмотр */
+
+.label-preview {
+  background: #e0e0e0;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Лист A4 внутри предпросмотра */
+.label-sheet {
+  width: 210mm;
+  height: 297mm;
+  margin: 0 auto;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+}
+
+/* grid теперь живёт на листе */
+.label-grid {
+  display: grid;
+  margin: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+/* ==== СТИЛЬ САМОЙ ЭТИКЕТКИ ==== */
+
+.hb-label-card {
+  position: relative;
+  background: #ffffff;
+  color: #9b6e03;
+  font-family: "Inter", sans-serif;
+  border-radius: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+/* верх */
+
+.hb-label-header {
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.hb-label-brand {
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.hb-label-subtitle {
+  font-size: 8.5px;
+}
+
+/* тело */
+.hb-label-body {
+  flex: 1;
+  display: flex;
+  gap: 4px; /* чуть увеличил, чтобы всё дышало */
+}
+
+/* левая колонка — как было */
+.hb-label-body-left {
+  flex: 1;
+  padding-right: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* центральный значок */
+.hb-label-body-center {
+  position: absolute;
+  top: 60%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+}
+
+/* сам кружок/значок */
+.hb-label-badge {
+  border-radius: 50%; /* делаем круг */
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+}
+
+.hb-label-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hb-label-ingredients {
+  color: #a47404;
+  border-radius: 5px;
+}
+
+.hb-label-calories {
+  width: 130px;
+  margin-bottom: 5px;
+}
+
+.hb-label-ingredients,
+.hb-label-calories,
+.hb-label-dates,
+.hb-label-contacts {
+  font-size: 7px;
+  line-height: 1.1;
+  margin-top: 5px;
+}
+
+.hb-label-calories {
+  text-align: center;
+}
+
+.hb-label-dates {
+  margin-top: 1px;
+}
+
+.hb-label-contacts {
+  margin-top: 1px;
+}
+
+/* правая колонка */
+
+.hb-label-body-right {
+  min-width: 34%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.hb-label-qr {
+  background: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hb-label-qr img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hb-label-weight {
+  text-align: center;
+}
+
+.hb-label-weight-main {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.hb-label-weight-tolerance {
+  font-size: 7.5px;
+  line-height: 1;
+}
+
+/* низ */
+
+.hb-label-footer {
+  margin-top: 2px;
+  text-align: center;
+  font-size: 7.5px;
+  line-height: 1.1;
+}
+
+.hb-label-note {
+  font-style: italic;
+  margin-top: 1px;
+  color: blue;
+}
+
+/* Печать */
+
+@media screen {
+  .label-sheet {
+    zoom: 0.9; /* подбери 0.6 / 0.55 / 0.5 как удобнее, это влияет только на экран */
+  }
+}
+
+@media print {
+  .print-hide,
+  .top-menu {
+    display: none !important;
+  }
+  .label-sheet {
+    zoom: 1 !important;
+  }
+
+  html,
+  body,
+  .label-page,
+  .label-preview,
+  .label-sheet {
+    background: #ffffff !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0;
+  }
+
+  @page {
+    margin: 0;
+    size: A4;
+  }
+
+  .label-layout {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .label-preview {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .hb-label-card,
+  .label-sheet,
+  .label-preview {
+    box-shadow: none !important; /* чтобы тени не печатались */
+  }
+}
