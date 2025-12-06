@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/hb-cookes-pri/static/css/main.bc61044d.css",
-    "main.js": "/hb-cookes-pri/static/js/main.434fab75.js",
+    "main.css": "/hb-cookes-pri/static/css/main.38136ac0.css",
+    "main.js": "/hb-cookes-pri/static/js/main.ee9af679.js",
     "index.html": "/hb-cookes-pri/index.html",
-    "main.bc61044d.css.map": "/hb-cookes-pri/static/css/main.bc61044d.css.map",
-    "main.434fab75.js.map": "/hb-cookes-pri/static/js/main.434fab75.js.map"
+    "main.38136ac0.css.map": "/hb-cookes-pri/static/css/main.38136ac0.css.map",
+    "main.ee9af679.js.map": "/hb-cookes-pri/static/js/main.ee9af679.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc61044d.css",
-    "static/js/main.434fab75.js"
+    "static/css/main.38136ac0.css",
+    "static/js/main.ee9af679.js"
   ]
 }
