@@ -84,7 +84,9 @@ p {
   position: relative;
   overflow: hidden; /* жёстко обрезаем всё, что выходит за рамку */
   background: #ffffff;
-  transition: width 0.3s, height 0.3s;
+  transition:
+    width 0.3s,
+    height 0.3s;
 }
 
 /* Слой с фоном (картинка) */
@@ -309,6 +311,27 @@ p {
   margin: 40px auto;
 }
 
+.rectangle-square118 {
+  border: 2px solid red;
+  width: 375px;
+  height: 375px;
+  border-radius: 15px;
+  margin: 110px 2px 2px 10px;
+}
+
+.rectangle-arch118 {
+  border: 2px solid red;
+  width: 310px;
+  height: 388px;
+
+  border-top-left-radius: 310px;
+  border-top-right-radius: 310px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  margin: 110px 40px 2px 40px;
+}
+
 .rectangle-pasha {
   display: inline-block;
   width: 374px;
@@ -337,7 +360,10 @@ p {
   padding: 8px 16px;
   justify-content: center;
   background: #494846;
-  box-shadow: 0 0 10px #39f, 0 0 20px #39f, 0 0 30px #39f;
+  box-shadow:
+    0 0 10px #39f,
+    0 0 20px #39f,
+    0 0 30px #39f;
 }
 
 .tab-link {

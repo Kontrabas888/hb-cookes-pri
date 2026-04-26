@@ -1,8 +1,8 @@
 {
-  "name": "web-print",
+  "name": "hb-cookies-pri",
   "version": "0.2.0",
   "private": true,
-  "homepage": "https://kontrabas888.github.io/hb-cookes-pri/",
+  "homepage": "https://kontrabas888.github.io/hb-cookes-pri",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

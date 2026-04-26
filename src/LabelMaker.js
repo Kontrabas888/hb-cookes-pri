@@ -9,6 +9,7 @@ const STORAGE_KEY = "hb-label-template-v1";     // последний испол
 const PROFILES_KEY = "hb-label-profiles-v1";   // список сохранённых профилей
 const DEFAULT_LOGO_URL = `${process.env.PUBLIC_URL}/qr-code.png`;
 const DOP_LOGO_URL = `${process.env.PUBLIC_URL}/NutsFREE.png`;
+const DEFAULT_ORIGIN_ICON_URL = `${process.env.PUBLIC_URL}/HardCanada-NoBack.png`;
 
 
 // форматирование даты
@@ -28,6 +29,19 @@ function formatDate(date, format) {
       return `${mm}/${dd}/${yyyy}`;
   }
 }
+
+const DEFAULT_FONT_SIZES = {
+  brand: 11,
+  subtitle: 6,
+  ingredients: 5.2,
+  calories: 5.2,
+  dates: 5,
+  contacts: 5,
+  weight: 10,
+  tolerance: 5,
+  footer: 4.8,
+  note: 4.5,
+};
 
 const WEIGHT_PRESETS = [
   {
@@ -80,6 +94,9 @@ function buildConfigFromState(state) {
     verticalGapMM,
     badgeUrl,
     badgeSizeMM,
+    originIconUrl,
+    originIconSizeMM,
+    fontSizes,
     } = state;
 
   return {
@@ -110,6 +127,9 @@ function buildConfigFromState(state) {
     verticalGapMM,
     badgeUrl,
     badgeSizeMM,
+    originIconUrl,
+    originIconSizeMM,
+    fontSizes,
   };
 }
 
@@ -147,14 +167,19 @@ export default function LabelMaker() {
   const [weight, setWeight] = useState("45g");
   const [tolerance, setTolerance] = useState("+/-5g");
   const [origin, setOrigin] = useState("Made in CANADA");
+  const [fontSizes, setFontSizes] = useState(DEFAULT_FONT_SIZES);
 
   /* --- ЛОГОТИП / QR --- */
   const [logoUrl, setLogoUrl] = useState(DEFAULT_LOGO_URL);
-  const [logoSizeMM, setLogoSizeMM] = useState(22);
+  const [logoSizeMM, setLogoSizeMM] = useState(18);
 
 // --- ДОП. ЗНАЧОК (иконка "Nut free", vegan и т.п.) ---
   const [badgeUrl, setBadgeUrl] = useState(DOP_LOGO_URL);
-  const [badgeSizeMM, setBadgeSizeMM] = useState(22);
+  const [badgeSizeMM, setBadgeSizeMM] = useState(11);
+
+  //  — иконка происхождения
+  const [originIconUrl, setOriginIconUrl] = useState(DEFAULT_ORIGIN_ICON_URL);
+  const [originIconSizeMM, setOriginIconSizeMM] = useState(3);
 
   /* --- РАСКЛАДКА / КАЛИБРОВКА --- */
   const [count, setCount] = useState(15);
@@ -227,7 +252,7 @@ export default function LabelMaker() {
         if (data.calories) setCalories(data.calories);
         if (data.storage) setStorage(data.storage);
 
-        if ("badgeUrl" in data) setBadgeUrl(data.badgeUrl);
+          setBadgeUrl(data.badgeUrl || DOP_LOGO_URL);
         if (typeof data.badgeSizeMM === "number") setBadgeSizeMM(data.badgeSizeMM);
 
         if (data.mfgDate) setMfgDate(data.mfgDate);
@@ -244,6 +269,10 @@ export default function LabelMaker() {
         if (data.weight) setWeight(data.weight);
         if (data.tolerance) setTolerance(data.tolerance);
         if (data.origin) setOrigin(data.origin);
+
+        if (data.originIconUrl) setOriginIconUrl(data.originIconUrl);
+        if (typeof data.originIconSizeMM === "number")
+          setOriginIconSizeMM(data.originIconSizeMM);
 
         if (typeof data.logoSizeMM === "number")
           setLogoSizeMM(data.logoSizeMM);
@@ -263,6 +292,12 @@ export default function LabelMaker() {
           setHorizontalGapMM(data.horizontalGapMM);
         if (typeof data.verticalGapMM === "number")
           setVerticalGapMM(data.verticalGapMM);
+        if (data.fontSizes) {
+        setFontSizes({
+          ...DEFAULT_FONT_SIZES,
+          ...data.fontSizes,
+        });
+}
       }
 
       // профили
@@ -314,6 +349,9 @@ export default function LabelMaker() {
       verticalGapMM,
       badgeUrl,
       badgeSizeMM,
+      originIconUrl,
+      originIconSizeMM,
+      fontSizes,
     });
 
     try {
@@ -349,6 +387,9 @@ export default function LabelMaker() {
     verticalGapMM,
     badgeUrl,
     badgeSizeMM,
+    originIconUrl,
+    originIconSizeMM,
+    fontSizes,
   ]);
 
   /* ==========================
@@ -397,6 +438,9 @@ export default function LabelMaker() {
       verticalGapMM,
       badgeUrl,
       badgeSizeMM,
+      originIconUrl,
+      originIconSizeMM,
+      fontSizes,
     });
 
     const newProfile = {
@@ -441,6 +485,10 @@ export default function LabelMaker() {
     if (cfg.badgeUrl) setBadgeUrl(cfg.badgeUrl);
     if (typeof cfg.badgeSizeMM === "number") setBadgeSizeMM(cfg.badgeSizeMM);
 
+    if (cfg.originIconUrl) setOriginIconUrl(cfg.originIconUrl);
+    if (typeof cfg.originIconSizeMM === "number")
+      setOriginIconSizeMM(cfg.originIconSizeMM);
+
     if (typeof cfg.logoSizeMM === "number") setLogoSizeMM(cfg.logoSizeMM);
 
     if (typeof cfg.count === "number") setCount(cfg.count);
@@ -455,6 +503,12 @@ export default function LabelMaker() {
       setHorizontalGapMM(cfg.horizontalGapMM);
     if (typeof cfg.verticalGapMM === "number")
       setVerticalGapMM(cfg.verticalGapMM);
+    if (cfg.fontSizes) {
+      setFontSizes({
+        ...DEFAULT_FONT_SIZES,
+        ...cfg.fontSizes,
+      });
+    }
   };
 
   const handleUpdateCurrentProfile = () => {
@@ -490,6 +544,9 @@ export default function LabelMaker() {
       verticalGapMM,
       badgeUrl,
       badgeSizeMM,
+      originIconUrl,
+      originIconSizeMM,
+      fontSizes,
     });
 
     const next = [...profiles];
@@ -675,6 +732,88 @@ export default function LabelMaker() {
             <LabeledInput label="Примечание" value={note} onChange={setNote} />
           </Panel>
 
+          <Panel title="Размер текста">
+            <AdjustInput
+              label="Бренд"
+              value={fontSizes.brand}
+              onChange={(v) => setFontSizes((p) => ({ ...p, brand: v }))}
+              step={0.5}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Подзаголовок"
+              value={fontSizes.subtitle}
+              onChange={(v) => setFontSizes((p) => ({ ...p, subtitle: v }))}
+              step={0.5}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Ингредиенты"
+              value={fontSizes.ingredients}
+              onChange={(v) => setFontSizes((p) => ({ ...p, ingredients: v }))}
+              step={0.2}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Калории / Storage"
+              value={fontSizes.calories}
+              onChange={(v) => setFontSizes((p) => ({ ...p, calories: v }))}
+              step={0.2}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Даты"
+              value={fontSizes.dates}
+              onChange={(v) => setFontSizes((p) => ({ ...p, dates: v }))}
+              step={0.2}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Контакты"
+              value={fontSizes.contacts}
+              onChange={(v) => setFontSizes((p) => ({ ...p, contacts: v }))}
+              step={0.2}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Вес"
+              value={fontSizes.weight}
+              onChange={(v) => setFontSizes((p) => ({ ...p, weight: v }))}
+              step={0.5}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Допуск веса"
+              value={fontSizes.tolerance}
+              onChange={(v) => setFontSizes((p) => ({ ...p, tolerance: v }))}
+              step={0.2}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Низ этикетки"
+              value={fontSizes.footer}
+              onChange={(v) => setFontSizes((p) => ({ ...p, footer: v }))}
+              step={0.2}
+              min={3}
+            />
+
+            <AdjustInput
+              label="Примечание"
+              value={fontSizes.note}
+              onChange={(v) => setFontSizes((p) => ({ ...p, note: v }))}
+              step={0.2}
+              min={3}
+            />
+          </Panel>
+
           {/* Вес и происхождение */}
           <Panel title="Вес, происхождение и пресеты">
             <div className="field">
@@ -708,6 +847,22 @@ export default function LabelMaker() {
               value={origin}
               onChange={setOrigin}
             />
+            <LabeledInput
+              label="URL иконки происхождения"
+              value={originIconUrl}
+              onChange={setOriginIconUrl}
+            />
+            <AdjustInput
+              label="Размер иконки происхождения, мм"
+              value={originIconSizeMM}
+              onChange={setOriginIconSizeMM}
+              step={1}
+              min={2}
+            />
+             <div className="hint">
+              По умолчанию используется файл{" "}
+              <code>public/HardCanada-NoBack.png</code>. Можно заменить URL на любой другой.
+            </div>
           </Panel>
 
           {/* Логотип / QR */}
@@ -731,7 +886,7 @@ export default function LabelMaker() {
             </div>
           </Panel>
 
-          <Panel title="Доп. значок (иконка в центре)">
+          <Panel title="Доп. значок (NutFree)">
             <LabeledInput
               label="URL значка"
               value={badgeUrl}
@@ -856,6 +1011,9 @@ export default function LabelMaker() {
                   heightMM={labelHeightMM}
                   badgeUrl={badgeUrl}
                   badgeSizeMM={badgeSizeMM}
+                  originIconUrl={originIconUrl}
+                  originIconSizeMM={originIconSizeMM}
+                  fontSizes={fontSizes}
                 />
               ))}
             </div>
@@ -920,9 +1078,10 @@ function AdjustInput({ label, value, onChange, step = 0.5, min = 0 }) {
   const num = Number(value) || 0;
 
   const update = (next) => {
-    const v = Math.max(min, Number(next));
-    onChange(v);
-  };
+  const raw = Math.max(min, Number(next));
+  const rounded = Number(raw.toFixed(2)); // ← ВОТ ЭТО ВАЖНО
+  onChange(rounded);
+};
 
   return (
     <div className="field">
@@ -978,6 +1137,9 @@ function LabelCard({
   heightMM,
   badgeUrl,
   badgeSizeMM,
+  originIconUrl,
+  originIconSizeMM,
+  fontSizes,
 }) {
   return (
     <div
@@ -986,22 +1148,41 @@ function LabelCard({
     >
       {/* верх */}
       <div className="hb-label-header">
-        <div className="hb-label-brand">{brand}</div>
-        <div className="hb-label-subtitle">{subtitle}</div>
+        <div
+          className="hb-label-brand"
+          style={{ fontSize: `${fontSizes?.brand ?? DEFAULT_FONT_SIZES.brand}px` }}
+        >
+          {brand}
+        </div>
+          <div
+            className="hb-label-subtitle"
+            style={{ fontSize: `${fontSizes?.subtitle ?? DEFAULT_FONT_SIZES.subtitle}px` }}
+          >
+            {subtitle}
+        </div>
       </div>
 
       {/* тело */}
       <div className="hb-label-body">
         <div className="hb-label-body-left">
-          <div className="hb-label-ingredients">{ingredients}</div>
-
-          <div className="hb-label-calories">
+          <div
+            className="hb-label-ingredients"
+            style={{ fontSize: `${fontSizes?.ingredients ?? DEFAULT_FONT_SIZES.ingredients}px` }}
+          >
+            {ingredients}
+          </div>
+          
+          <div className="hb-label-calories"
+            style={{ fontSize: `${fontSizes?.calories ?? DEFAULT_FONT_SIZES.calories}px` }}>
             {calories}
             <br />
             {storage}
           </div>
 
-          <div className="hb-label-dates">
+            <div
+              className="hb-label-dates"
+              style={{ fontSize: `${fontSizes?.dates ?? DEFAULT_FONT_SIZES.dates}px` }}
+          >
             {`Expiration date: ${shelfLifeDaysFromLine(expirationLine)}`}
             <br />
             {bestBeforeLine}
@@ -1009,7 +1190,10 @@ function LabelCard({
             {`Mfg date: ${mfgDateFormatted}`}
           </div>
 
-          <div className="hb-label-contacts">
+          <div
+            className="hb-label-contacts"
+            style={{ fontSize: `${fontSizes?.contacts ?? DEFAULT_FONT_SIZES.contacts}px` }}
+          >
             {`Website: ${website}`}
             <br />
             {`Mail: ${email}`}
@@ -1044,17 +1228,53 @@ function LabelCard({
           )}
 
           <div className="hb-label-weight">
-            <div className="hb-label-weight-main">{weight}</div>
-            <div className="hb-label-weight-tolerance">{tolerance}</div>
+          <div
+            className="hb-label-weight-main"
+            style={{ fontSize: `${fontSizes?.weight ?? DEFAULT_FONT_SIZES.weight}px` }}
+          >
+            {weight}
+            </div>
+            <div
+              className="hb-label-weight-tolerance"
+              style={{ fontSize: `${fontSizes?.tolerance ?? DEFAULT_FONT_SIZES.tolerance}px` }}
+            >
+              {tolerance}
+            </div>
           </div>
         </div>
       </div>
 
       {/* низ */}
       <div className="hb-label-footer">
-        {instagram && <div>{instagram}</div>}
-        <div>{origin}</div>
-        {note && <div className="hb-label-note">{note}</div>}
+        {instagram && (
+          <div style={{ fontSize: `${fontSizes?.footer ?? DEFAULT_FONT_SIZES.footer}px` }}>
+            {instagram}
+          </div>
+                )}
+        {/* ⭐ NEW — текст + иконка происхождения в одной строке */}
+        <div
+          className="hb-origin"
+          style={{ fontSize: `${fontSizes?.footer ?? DEFAULT_FONT_SIZES.footer}px` }}
+                >
+          <span>{origin}</span>
+          {originIconUrl && (
+            <img
+              className="hb-origin-icon"
+              src={originIconUrl}
+              alt="Origin"
+              style={{ width: `${originIconSizeMM}mm` }}
+            />
+          )}
+        </div>
+
+        {note && (
+          <div
+            className="hb-label-note"
+            style={{ fontSize: `${fontSizes?.note ?? DEFAULT_FONT_SIZES.note}px` }}
+          >
+            {note}
+          </div>
+        )}
       </div>
     </div>
   );

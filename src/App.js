@@ -22,13 +22,13 @@ const LAYOUTS = [
     id: "rect3",
     className: "rectangle-style3",
     count: 4,
-    label: "Рамка Большие_14x10",
+    label: "Прямоугольники_14x10",
   },
   {
     id: "rect4",
     className: "rectangle-style4",
     count: 4,
-    label: "Прямоугольник_13x9",
+    label: "Прямоугольники_13x9",
   },
   {
     id: "rect5",
@@ -66,6 +66,18 @@ const LAYOUTS = [
     count: 1,
     label: "А5_145x225",
   },
+  {
+    id: "square118",
+    className: "rectangle-square118",
+    count: 4,
+    label: "Квадрат_95x95",
+  },
+  {
+  id: "arch118",
+  className: "rectangle-arch118",
+  count: 4,
+  label: "Арка 102x80",
+},
 ];
 
 const App = () => {

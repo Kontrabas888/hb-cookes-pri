@@ -8,9 +8,8 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 ReactDOM.render(
-  <Router basename="/web-honey-bunny">
+  <Router basename={process.env.PUBLIC_URL}>
     <DndProvider backend={HTML5Backend}>
-      {/* ОБЩЕЕ МЕНЮ ДЛЯ ВСЕХ СТРАНИЦ */}
       <NavBar />
 
       <Routes>
