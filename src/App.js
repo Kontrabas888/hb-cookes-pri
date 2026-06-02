@@ -74,7 +74,7 @@ const LAYOUTS = [
   },
   {
   id: "square120",
-  className: "square120",
+  className: "square-120",
   count: 2,
   label: "Квадрат_120",
 },

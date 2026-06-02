@@ -319,12 +319,12 @@ p {
   margin: 110px 2px 2px 10px;
 }
 
-.square120 {
+.square-120 {
   border: 2px solid red;
   width: 456px;
   height: 456px;
   border-radius: 15px;
-  margin: 50px auto;
+  margin: 60px 2px 10px 120px;
 }
 
 .rectangle-arch118 {
