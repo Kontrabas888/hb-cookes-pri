@@ -70,8 +70,14 @@ const LAYOUTS = [
     id: "square118",
     className: "rectangle-square118",
     count: 4,
-    label: "Квадрат_95x95",
+    label: "Квадрат_95",
   },
+  {
+  id: "square120",
+  className: "square120",
+  count: 2,
+  label: "Квадрат_120",
+},
   {
   id: "arch118",
   className: "rectangle-arch118",
